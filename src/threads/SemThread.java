@@ -10,53 +10,24 @@ import java.io.IOException;
  *
  * @author dailonreichert
  */
-public class Main {
+public class SemThread {
 
-    // Function to print Matriz
-    static void printMatriz(int M[][], int rowSize, int colSize){
-        for (int i = 0; i < rowSize; i++) {
-            for (int j = 0; j < colSize; j++){
-                System.out.print(M[i][j] + " ");
-            } 
-                
-            System.out.println();
-        }
-    }
-
-    // Function to multiply
-    // two matrices A[][] and B[][]
     static void multiplyMatriz(int row1, int col1, int A[][],
                                int row2, int col2, int B[][]) throws InterruptedException{
  
-        if (row2 != col1) {
-            System.out.println("\nMultiplication Not Possible");
-            
-            return;
-        }
-
-        int C[][] = new int[row1][col2];
-  
-        // Multiply the two marices
         for (int i = 0; i < row1; i++) {
             for (int j = 0; j < col2; j++) {
+                int valor = 0;
+
                 for (int k = 0; k < row2; k++){
-                    C[i][j] += A[i][k] * B[k][j];
+                    valor += A[i][k] * B[k][j];
                 }
+
+                System.out.print(valor + " ");
             }
+
+            System.out.println();
         }
-  
-        // Print the result
-        System.out.println("\nResultant Matrix:");
-        printMatriz(C, row1, col2);
-        
-        /*MatrizResultante matriz = new MatrizResultante(row1, col2);
-  
-        // Multiply the two marices
-        for (int i = 0; i < row1; i++) {
-            MyThread minhaThread = new MyThread(A, B, matriz, i, col2, row2);
-            minhaThread.start();
-            minhaThread.join();
-        }*/
     }
 
     // Driver code
@@ -68,11 +39,11 @@ public class Main {
         int matriz2[][]    = getMatriz("/Users/dailonreichert/Downloads/caso1/B.txt", linhaColuna2[0], linhaColuna2[1]);*/
 
         /*Windows*/
-        int linhaColuna1[] = getQuantidadeLinhaColuna("C:/Users/dailo/Documents/caso2/A.txt");
-        int matriz1[][]    = getMatriz("C:/Users/dailo/Documents/caso2/A.txt", linhaColuna1[0], linhaColuna1[1]);
+        int linhaColuna1[] = getQuantidadeLinhaColuna("C:/Users/dailo/Documents/caso1/A.txt");
+        int matriz1[][]    = getMatriz("C:/Users/dailo/Documents/caso1/A.txt", linhaColuna1[0], linhaColuna1[1]);
 
-        int linhaColuna2[] = getQuantidadeLinhaColuna("C:/Users/dailo/Documents/caso2/B.txt");
-        int matriz2[][]    = getMatriz("C:/Users/dailo/Documents/caso2/B.txt", linhaColuna2[0], linhaColuna2[1]);
+        int linhaColuna2[] = getQuantidadeLinhaColuna("C:/Users/dailo/Documents/caso1/B.txt");
+        int matriz2[][]    = getMatriz("C:/Users/dailo/Documents/caso1/B.txt", linhaColuna2[0], linhaColuna2[1]);
 
         multiplyMatriz(linhaColuna1[0], linhaColuna1[1], matriz1,
                        linhaColuna2[0], linhaColuna2[1], matriz2);
