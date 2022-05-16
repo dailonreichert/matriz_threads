@@ -26,13 +26,8 @@ public class Main {
     // Function to multiply
     // two matrices A[][] and B[][]
     static void multiplyMatriz(int row1, int col1, int A[][],
-                               int row2, int col2, int B[][]){
-
-        /*System.out.println("\nMatrix A:");
-        printMatriz(A, row1, col1);
-        System.out.println("\nMatrix B:");
-        printMatriz(B, row2, col2);*/
-  
+                               int row2, int col2, int B[][]) throws InterruptedException{
+ 
         if (row2 != col1) {
             System.out.println("\nMultiplication Not Possible");
             
@@ -53,26 +48,34 @@ public class Main {
         // Print the result
         System.out.println("\nResultant Matrix:");
         printMatriz(C, row1, col2);
+        
+        /*MatrizResultante matriz = new MatrizResultante(row1, col2);
+  
+        // Multiply the two marices
+        for (int i = 0; i < row1; i++) {
+            MyThread minhaThread = new MyThread(A, B, matriz, i, col2, row2);
+            minhaThread.start();
+            minhaThread.join();
+        }*/
     }
 
     // Driver code
-    public static void main(String[] args) throws FileNotFoundException, IOException{
-        int linhaColuna1[] = getQuantidadeLinhaColuna("/Users/dailonreichert/Downloads/caso2/A.txt");
+    public static void main(String[] args) throws FileNotFoundException, IOException, InterruptedException{
+        /*macOS*/
+        /*int linhaColuna1[] = getQuantidadeLinhaColuna("/Users/dailonreichert/Downloads/caso2/A.txt");
         int matriz1[][]    = getMatriz("/Users/dailonreichert/Downloads/caso1/A.txt", linhaColuna1[0], linhaColuna1[1]);
-
         int linhaColuna2[] = getQuantidadeLinhaColuna("/Users/dailonreichert/Downloads/caso2/B.txt");
-        int matriz2[][]    = getMatriz("/Users/dailonreichert/Downloads/caso1/B.txt", linhaColuna2[0], linhaColuna2[1]);
+        int matriz2[][]    = getMatriz("/Users/dailonreichert/Downloads/caso1/B.txt", linhaColuna2[0], linhaColuna2[1]);*/
+
+        /*Windows*/
+        int linhaColuna1[] = getQuantidadeLinhaColuna("C:/Users/dailo/Documents/caso2/A.txt");
+        int matriz1[][]    = getMatriz("C:/Users/dailo/Documents/caso2/A.txt", linhaColuna1[0], linhaColuna1[1]);
+
+        int linhaColuna2[] = getQuantidadeLinhaColuna("C:/Users/dailo/Documents/caso2/B.txt");
+        int matriz2[][]    = getMatriz("C:/Users/dailo/Documents/caso2/B.txt", linhaColuna2[0], linhaColuna2[1]);
 
         multiplyMatriz(linhaColuna1[0], linhaColuna1[1], matriz1,
                        linhaColuna2[0], linhaColuna2[1], matriz2);
-
-        /*int row1 = 2, col1 = 3, row2 = 3, col2 = 2;
-
-        int A[][] = {{1, 0, 2}, {-1, 3, 1}};
-        int B[][] = {{3, 1}, { 2, 1}, {1, 0}};
-
-        multiplyMatriz(row1, col1, A,
-                       row2, col2, B);*/
     }
 
     public static int [][] getMatriz(String file, int qntLinha, int qntColuna) throws FileNotFoundException, IOException{
