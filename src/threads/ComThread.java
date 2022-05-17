@@ -12,6 +12,16 @@ import java.io.IOException;
  */
 public class ComThread {
 
+    static void printMatriz(int M[][], int rowSize, int colSize){
+        for (int i = 0; i < rowSize; i++) {
+            for (int j = 0; j < colSize; j++){
+                System.out.print(M[i][j] + " ");
+            } 
+                
+            System.out.println();
+        }
+    }
+
     static void multiplicaMatriz(int row1, int col1, int A[][],
                                  int row2, int col2, int B[][]) throws InterruptedException{
  
@@ -21,10 +31,16 @@ public class ComThread {
             return;
         }
 
+        int C[][] = new int[row1][col2];
+  
+        // Multiply the two marices
         for (int i = 0; i < row1; i++) {
-            MyThread minhaThread = new MyThread(A, B, i, col2, row2);
+            MyThread minhaThread = new MyThread(A, B, C, i, col2, row2);
             minhaThread.start();
         }
+
+        //System.out.println("\nResultant Matrix:");
+        //printMatriz(C, row1, col2);
     }
 
     public static void main(String[] args) throws FileNotFoundException, IOException, InterruptedException{
