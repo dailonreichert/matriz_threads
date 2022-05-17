@@ -12,8 +12,8 @@ import java.io.IOException;
  */
 public class SemThread {
 
-    static void multiplyMatriz(int row1, int col1, int A[][],
-                               int row2, int col2, int B[][]) throws InterruptedException{
+    static void multiplicaMatriz(int row1, int col1, int A[][],
+                                 int row2, int col2, int B[][]) throws InterruptedException{
  
         for (int i = 0; i < row1; i++) {
             for (int j = 0; j < col2; j++) {
@@ -33,20 +33,20 @@ public class SemThread {
     // Driver code
     public static void main(String[] args) throws FileNotFoundException, IOException, InterruptedException{
         /*macOS*/
-        /*int linhaColuna1[] = getQuantidadeLinhaColuna("/Users/dailonreichert/Downloads/caso2/A.txt");
-        int matriz1[][]    = getMatriz("/Users/dailonreichert/Downloads/caso1/A.txt", linhaColuna1[0], linhaColuna1[1]);
-        int linhaColuna2[] = getQuantidadeLinhaColuna("/Users/dailonreichert/Downloads/caso2/B.txt");
-        int matriz2[][]    = getMatriz("/Users/dailonreichert/Downloads/caso1/B.txt", linhaColuna2[0], linhaColuna2[1]);*/
+        int linhaColuna1[] = getQuantidadeLinhaColuna(Const.CASO_3_A_MAC);
+        int matriz1[][]    = getMatriz(Const.CASO_3_A_MAC, linhaColuna1[0], linhaColuna1[1]);
+        int linhaColuna2[] = getQuantidadeLinhaColuna(Const.CASO_3_B_MAC);
+        int matriz2[][]    = getMatriz(Const.CASO_3_B_MAC, linhaColuna2[0], linhaColuna2[1]);
 
         /*Windows*/
-        int linhaColuna1[] = getQuantidadeLinhaColuna("C:/Users/dailo/Documents/caso1/A.txt");
+        /*int linhaColuna1[] = getQuantidadeLinhaColuna("C:/Users/dailo/Documents/caso1/A.txt");
         int matriz1[][]    = getMatriz("C:/Users/dailo/Documents/caso1/A.txt", linhaColuna1[0], linhaColuna1[1]);
 
         int linhaColuna2[] = getQuantidadeLinhaColuna("C:/Users/dailo/Documents/caso1/B.txt");
-        int matriz2[][]    = getMatriz("C:/Users/dailo/Documents/caso1/B.txt", linhaColuna2[0], linhaColuna2[1]);
+        int matriz2[][]    = getMatriz("C:/Users/dailo/Documents/caso1/B.txt", linhaColuna2[0], linhaColuna2[1]);*/
 
-        multiplyMatriz(linhaColuna1[0], linhaColuna1[1], matriz1,
-                       linhaColuna2[0], linhaColuna2[1], matriz2);
+        multiplicaMatriz(linhaColuna1[0], linhaColuna1[1], matriz1,
+                         linhaColuna2[0], linhaColuna2[1], matriz2);
     }
 
     public static int [][] getMatriz(String file, int qntLinha, int qntColuna) throws FileNotFoundException, IOException{
@@ -89,6 +89,7 @@ public class SemThread {
 
             if(linha == 2){
                 linhaColuna[1] = Integer.parseInt(line);
+                break;
             }
 
             linha++;
