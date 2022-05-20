@@ -5,7 +5,7 @@ package threads;
  *
  * @author dailonreichert
  */
-public class MyThread extends Thread {
+public class MyThread2 extends Thread {
 
     int[][] matrizA;
     int[][] matrizB;
@@ -32,31 +32,30 @@ public class MyThread extends Thread {
         return intervaloFinal;
     }
     
-    public MyThread(int[][] matrizA, int[][] matrizB, int[][] matrizResultante, /*int linha,*/ int coluna, int qntColunas) {
+    public MyThread2(int[][] matrizA, int[][] matrizB, int[][] matrizResultante, int linha, int coluna, int qntColunas) {
         this.matrizA = matrizA;
         this.matrizB = matrizB;
         this.MatrizResultante = matrizResultante;
-        //this.linha = linha;
+        this.linha = linha;
         this.coluna = coluna;
         this.qntColunas = qntColunas;
     }
-
-    // utilizado quando a quantidade de threads for uma quantidade fixa
+    
+    // Utlizado quando a quantidade de threads for a quantidade de linhas da matriz resultante
     public void run() {
-        for (int i = getIntervaloInicial(); i < getIntervaloFinal(); i++) {
-            for (int j = 0; j < coluna; j++) {
-                int valor = 0;
+        for (int j = 0; j < coluna; j++) {
+            int valor = 0;
 
-                for (int k = 0; k < qntColunas; k++){
-                    valor += matrizA[i][k] * matrizB[k][j];
+            for (int k = 0; k < qntColunas; k++){
+                valor += matrizA[linha][k] * matrizB[k][j];
 
-                }
-
-                //System.out.print(valor + " ");
-
-                MatrizResultante[i][j] = valor;
             }
+
+            //System.out.print(valor + " ");
+
+            MatrizResultante[linha][j] = valor;
         }
+
         //System.out.println();
     }
 }

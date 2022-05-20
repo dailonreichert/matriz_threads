@@ -32,12 +32,48 @@ public class ComThread {
         }
 
         int C[][] = new int[row1][col2];
+        int threads = 8;
+        int quantidadeCadaThread = row1 / threads;
+        //int threads = 8;
   
-        // Multiply the two marices
+        //Quando a quantidade de threads for a quantidade de linhas
         for (int i = 0; i < row1; i++) {
-            MyThread minhaThread = new MyThread(A, B, C, i, col2, row2);
+            MyThread2 minhaThread = new MyThread2(A, B, C, i, col2, row2);
             minhaThread.start();
+            //minhaThread.join();
         }
+
+        //Quando a quantidade de threads for igual a 2
+        /*MyThread minhaThread = new MyThread(A, B, C, col2, row2);
+        minhaThread.setIntervaloInicial(0);
+        minhaThread.setIntervaloFinal(quantidadeCadaThread);
+        minhaThread.start();
+
+        MyThread minhaThread2 = new MyThread(A, B, C, col2, row2);
+        minhaThread2.setIntervaloInicial(quantidadeCadaThread);
+        minhaThread2.setIntervaloFinal(row1);
+        minhaThread2.start();*/
+
+        //Quando a quantidade de threads for maior que 2
+        /*MyThread minhaThread = new MyThread(A, B, C, col2, row2);
+        minhaThread.setIntervaloInicial(0);
+        minhaThread.setIntervaloFinal(quantidadeCadaThread);
+        minhaThread.start();
+
+        for (int i = 2; i <= threads - 1; i++) {
+            int inicioIntervalo = ((i - 1) * quantidadeCadaThread) + 1;
+            int fimIntervalo = i * quantidadeCadaThread;
+
+            MyThread minhaThread2 = new MyThread(A, B, C, col2, row2);
+            minhaThread2.setIntervaloInicial(inicioIntervalo);
+            minhaThread2.setIntervaloFinal(fimIntervalo);
+            minhaThread2.start();
+        }
+        
+        MyThread minhaThread3 = new MyThread(A, B, C, col2, row2);
+        minhaThread3.setIntervaloInicial((quantidadeCadaThread * (threads - 1)) + 1);
+        minhaThread3.setIntervaloFinal(row1);
+        minhaThread3.start();*/
 
         //System.out.println("\nResultant Matrix:");
         //printMatriz(C, row1, col2);

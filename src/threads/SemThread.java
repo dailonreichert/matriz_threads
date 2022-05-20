@@ -12,8 +12,20 @@ import java.io.IOException;
  */
 public class SemThread {
 
+    static void printMatriz(int M[][], int rowSize, int colSize){
+        for (int i = 0; i < rowSize; i++) {
+            for (int j = 0; j < colSize; j++){
+                System.out.print(M[i][j] + " ");
+            } 
+                
+            System.out.println();
+        }
+    }
+
     static void multiplicaMatriz(int row1, int col1, int A[][],
                                  int row2, int col2, int B[][]) throws InterruptedException{
+
+        int C[][] = new int[row1][col2];
  
         for (int i = 0; i < row1; i++) {
             for (int j = 0; j < col2; j++) {
@@ -23,11 +35,11 @@ public class SemThread {
                     valor += A[i][k] * B[k][j];
                 }
 
-                System.out.print(valor + " ");
+                C[i][j] = valor;
             }
-
-            System.out.println();
         }
+
+        //printMatriz(C, row1, col2);
     }
 
     // Driver code
